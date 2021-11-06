@@ -7,7 +7,7 @@ button.addEventListener('click', () => {
     newColor = randomColor();
     const color = document.querySelector('#color');
     color.style.backgroundColor = newColor;
-    h1.innerText = `RGB(${colors.red},${colors.green},${colors.blue})`;;
+    h1.innerText = `RGB(${colors.red}, ${colors.green}, ${colors.blue})`;;
 })
 
 button.addEventListener('click', () => {
