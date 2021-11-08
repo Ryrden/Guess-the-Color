@@ -97,7 +97,7 @@ button {
     background-color: none;
     font-family: 'Roboto', sans-serif;
     color: black;
-    border:3.5px solid black;
+    border: 3.5px solid black;
     padding: 1em 2em;
     font-size: 1em;
     transition: border-color 0.25s, color 0.25s;
@@ -127,10 +127,20 @@ button:hover{
 }
 
 .square {
-    border: 1px solid black;
+    border: 2.5px solid black;
+    background-color: none;
+    font-family: 'Roboto', sans-serif;
     width: 5em;
     height: 5em;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 1em;
+    transition: border-color 0.25s, color 0.25s;
+}
+
+.square:hover {
+    border-color: grey;
+    box-shadow: 0 0.8em 0.8em -0.4em black;
+    transform: translateY(-0.15em);
 }
