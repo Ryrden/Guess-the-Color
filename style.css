@@ -73,6 +73,11 @@ body {
     margin-top: 2vh;
     text-align: center;
 }
+
+#how-to-play p span {
+    
+}
+
 #the-center{
     text-align: center;
     min-width: 22.5em;
@@ -110,7 +115,6 @@ button:hover{
     transform: translateY(-0.15em);
 }
 
-
 #color {
     display: flex;
     justify-content: center;
@@ -127,7 +131,7 @@ button:hover{
 }
 
 .square {
-    border: 2.5px solid black;
+    border: 3.5px solid black;
     background-color: none;
     font-family: 'Roboto', sans-serif;
     width: 5em;

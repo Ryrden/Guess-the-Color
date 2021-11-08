@@ -47,8 +47,6 @@ for (let i = 0; i < 3; i++) {
     })
 }
 
-
-
 const randomColor = () => {
     colors.red = Math.floor(Math.random() * 255);
     colors.green = Math.floor(Math.random() * 255);
