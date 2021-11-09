@@ -116,9 +116,11 @@ button {
     font-size: 1em;
     transition: border-color 0.25s, color 0.25s;
     border-radius: 5em;
+    
 }
 
 button:hover{
+    cursor: pointer;
     border-color: grey;
     box-shadow: 0 0.8em 0.8em -0.4em black;
     transform: translateY(-0.15em);
@@ -145,6 +147,7 @@ button:hover{
 }
 
 .square:hover {
+    cursor: pointer;
     border-color: grey;
     box-shadow: 0 0.8em 0.8em -0.4em black;
     transform: translateY(-0.15em);
