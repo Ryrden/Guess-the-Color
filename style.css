@@ -41,7 +41,7 @@ table {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     height: 100%;
 }
 
@@ -91,6 +91,11 @@ body {
     justify-content: center;
     margin: 0.5em 0;
 }
+
+.text-content {
+    font-size: 0.95em;
+}
+
 #the-center{
     text-align: center;
     min-width: 22.5em;
@@ -101,7 +106,7 @@ body {
 #play{
     margin-right:2.5vh;
     margin-top: 20px;
-    text-align: right;
+    text-align: center;
     height: inherit;
 }
 

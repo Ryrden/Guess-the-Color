@@ -7,7 +7,7 @@ const color = document.querySelector('#color');
 let colors = { red: 0, green: 0, blue: 0 };
 let minNumMargin = 25;
 let maxNumMargin = 35;
-let answer = '0';
+let answer;
 
 button.addEventListener('click', () => {
     newColor = randomColor();
@@ -34,15 +34,19 @@ button.addEventListener('click', () => {
             Nums[i].innerText = wrongNum(correctNum(ButtonToHide), canSum);
             canSum++;
         }
+        /* Todos os botões estão sendo considerados certos... */
+        answerButtons[answer].addEventListener('click', () => {
+            generateDisplayColor();
+        })
     }
 })
 
-/* answerButtons[answer].addEventListener('click', () => {
+function generateDisplayColor() {
     newColor = randomColor();
     ButtonToHide = numButtonToHide();
     changeColor(newColor);
     changeTextButton(newColor, ButtonToHide);
-}) */
+}
 
 function changeColor() {
     color.style.backgroundColor = newColor;
