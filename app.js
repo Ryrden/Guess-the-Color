@@ -1,15 +1,18 @@
 const button = document.querySelector('button');
-const h1 = document.querySelector('h1');
+const h1 = document.querySelector('#RGB');
 const answerButtons = document.querySelectorAll('.square');
+const Nums = document.querySelectorAll('.square span');
+
 
 let colors = { red: 0, green: 0, blue: 0 };
 
 button.addEventListener('click', () => {
     newColor = randomColor();
+    ButtonToHide = numButtonToHide();
     const color = document.querySelector('#color');
     button.style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
     color.style.backgroundColor = newColor;
-    h1.innerText = `RGB(${colors.red}, ${colors.green}, ${colors.blue})`;;
+    h1.innerText = hideRGBNum(ButtonToHide);
     button.style.borderColor = newColor;
 
     button.addEventListener('mouseover', () => {
@@ -22,6 +25,9 @@ button.addEventListener('click', () => {
             answerButtons[i].style.borderColor = newColor;
             answerButtons[i].style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
         })
+        if (i === ButtonToHide) {
+            Nums[i].innerText = CorrectNum(ButtonToHide);
+        }
     }
 })
 
@@ -46,6 +52,26 @@ for (let i = 0; i < 3; i++) {
         answerButtons[i].style.boxShadow = `none`;
     })
 }
+
+function hideRGBNum(buttonNum) {
+    if (buttonNum === 0)
+        return `RGB(???, ${colors.green}, ${colors.blue})`
+    else if (buttonNum === 1)
+        return `RGB(${colors.red}, ???, ${colors.blue})`
+    else
+        return `RGB(${colors.red}, ${colors.green}, ???)`
+}
+
+function CorrectNum(buttonNum) {
+    if (buttonNum === 0)
+        return colors.red;
+    else if (buttonNum === 1)
+        return colors.green
+    else
+        return colors.blue
+}
+
+const numButtonToHide = () => (Math.floor(Math.random() * 3))
 
 const randomColor = () => {
     colors.red = Math.floor(Math.random() * 255);
