@@ -9,9 +9,7 @@ let minNumMargin = 25;
 let maxNumMargin = 35;
 let answer;
 
-button.addEventListener('click', startGame);
-
-function startGame() {
+button.addEventListener('click', () => {
     newColor = randomColor();
     ButtonToHide = numButtonToHide();
     changeColor(newColor);
@@ -21,17 +19,7 @@ function startGame() {
         button.style.borderColor = newColor;
         button.style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
     })
-    generateAnswerNumbers();
-}
 
-for (let i = 0; i < 3; i++) {
-    if (i === answer)
-        answerButtons[i].classList.toggle('correct');
-    else
-        answerButtons[i].classList.toggle('wrong');
-}
-
-function generateAnswerNumbers() {
     let canSum = 0;
     answer = Math.floor(Math.random() * 3);
     for (let i = 0; i < 3; i++) {
@@ -46,8 +34,12 @@ function generateAnswerNumbers() {
             Nums[i].innerText = wrongNum(correctNum(ButtonToHide), canSum);
             canSum++;
         }
+        /* Todos os botões estão sendo considerados certos... */
+        answerButtons[answer].addEventListener('click', () => {
+            generateDisplayColor();
+        })
     }
-}
+})
 
 function generateDisplayColor() {
     newColor = randomColor();
