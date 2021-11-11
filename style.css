@@ -92,6 +92,10 @@ body {
     margin: 0.5em 0;
 }
 
+.text-header:first-child{
+    margin-top: 0;
+}
+
 .text-content {
     font-size: 0.95em;
 }

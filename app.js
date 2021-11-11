@@ -1,5 +1,5 @@
-const button = document.querySelector('button');
-const h1 = document.querySelector('#RGB');
+const button = document.querySelector('#principal-button');
+const RGB_h1 = document.querySelector('#RGB');
 const answerButtons = document.querySelectorAll('.square');
 const Nums = document.querySelectorAll('.square span');
 const color = document.querySelector('#color');
@@ -14,10 +14,14 @@ button.addEventListener('click', () => {
     newColor = randomColor();
     ButtonToHide = numButtonToHide();
     color.style.backgroundColor = newColor;
-    h1.innerText = hideRGBNum(ButtonToHide);
-    
+    RGB_h1.innerText = hideRGBNum(ButtonToHide);
+    button.innerText = 'Boa sorte!'
+    button.disabled = true;
+
     defineBtnEffect();
     button.addEventListener('mouseover', defineBtnEffect)
+
+    const answer = CorrectNum(ButtonToHide);
 
     for (let i = 0; i < 3; i++) {
         answerButtons[i].addEventListener('mouseover', () => {
@@ -27,21 +31,7 @@ button.addEventListener('click', () => {
     }
 })
 
-function defineBtnEffect() {
-    button.style.borderColor = newColor;
-    button.style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
-}
-
-for (let btn of [button, answerButtons[0], answerButtons[1], answerButtons[2]]) {
-    btn.addEventListener('mouseover', () => {
-        btn.style.borderColor = 'gray';
-        btn.style.boxShadow = `0 0.8em 0.8em -0.4em black`;
-    })
-    btn.addEventListener('mouseleave', () => {
-        btn.style.borderColor = 'black';
-        btn.style.boxShadow = `none`;
-    })
-}
+const numButtonToHide = () => (Math.floor(Math.random() * 3))
 
 function hideRGBNum(buttonNum) {
     if (buttonNum === 0)
@@ -58,10 +48,9 @@ function CorrectNum(buttonNum) {
     else if (buttonNum === 1)
         return colors.green
     else
-        return colors.blue
+    return colors.blue
 }
 
-const numButtonToHide = () => (Math.floor(Math.random() * 3))
 
 const randomColor = () => {
     colors.red = Math.floor(Math.random() * 255);
@@ -69,4 +58,22 @@ const randomColor = () => {
     colors.blue = Math.floor(Math.random() * 255);
     return `rgb(${colors.red}, ${colors.green}, ${colors.blue})`;
 }
+
+/* EFEITOS DE COR DOS BOTÕES */
+function defineBtnEffect() {
+    button.style.borderColor = newColor;
+    button.style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
+}
+
+for (let btn of [button, answerButtons[0], answerButtons[1], answerButtons[2]]) {
+    btn.addEventListener('mouseover', () => {
+        btn.style.borderColor = 'gray';
+        btn.style.boxShadow = `0 0.8em 0.8em -0.4em black`;
+    })
+    btn.addEventListener('mouseleave', () => {
+        btn.style.borderColor = 'black';
+        btn.style.boxShadow = `none`;
+    })
+}
+
 
