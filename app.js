@@ -3,6 +3,7 @@ const RGB_h1 = document.querySelector('#RGB');
 const answerButtons = document.querySelectorAll('.square');
 const Nums = document.querySelectorAll('.square span');
 const color = document.querySelector('#color');
+const message = document.querySelector('#message')
 
 
 let colors = { red: 0, green: 0, blue: 0 };
@@ -16,7 +17,8 @@ button.addEventListener('click', () => {
     color.style.backgroundColor = newColor;
     RGB_h1.innerText = hideRGBNum(buttonToHide);
     button.innerText = 'Boa sorte!'
-    /* button.disabled = true; */
+    message.innerText = 'Qual número está mais próximo??'
+    button.disabled = true;
 
     defineBtnEffect();
     button.addEventListener('mouseover', defineBtnEffect)
@@ -31,10 +33,29 @@ button.addEventListener('click', () => {
         if (i === buttonToAnswer)
             answerButtons[i].textContent = answer;
         else
+            /* temporario */
             answerButtons[i].textContent = Math.floor(Math.random() * 255);
-        /* temporario */
 
+        answerButtons[i].addEventListener('click', function () {
+            console.log(this);
+            if (this.textContent == answer) {
+                RGB_h1.innerText = 'Jogar novamente?';
+                button.innerText = 'Claro!'
+                message.innerText = 'Parabéns, você acertou!'
+                let i = 0
+                for (let i = 0; i < 3; i++) {
+                    answerButtons[i].disabled = true;
+                    answerButtons[i].innerHTML = '<i class="fas fa-check"></i>'
+                }
+                button.disabled = false;
+            }
+            else {
+                message.innerText = 'Quase! Tente de novo'
+                this.innerHTML = '<i class="fas fa-times"></i>';
+                errors++;
 
+            }
+        })
     }
 })
 
