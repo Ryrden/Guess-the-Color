@@ -12,26 +12,33 @@ let answer;
 
 button.addEventListener('click', () => {
     newColor = randomColor();
-    ButtonToHide = numButtonToHide();
+    buttonToHide = randomIn3();
     color.style.backgroundColor = newColor;
-    RGB_h1.innerText = hideRGBNum(ButtonToHide);
+    RGB_h1.innerText = hideRGBNum(buttonToHide);
     button.innerText = 'Boa sorte!'
-    button.disabled = true;
+    /* button.disabled = true; */
 
     defineBtnEffect();
     button.addEventListener('mouseover', defineBtnEffect)
 
-    const answer = CorrectNum(ButtonToHide);
-
+    const answer = CorrectNum(buttonToHide);
+    const buttonToAnswer = randomIn3();
     for (let i = 0; i < 3; i++) {
         answerButtons[i].addEventListener('mouseover', () => {
             answerButtons[i].style.borderColor = newColor;
             answerButtons[i].style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
         })
+        if (i === buttonToAnswer)
+            answerButtons[i].textContent = answer;
+        else
+            answerButtons[i].textContent = Math.floor(Math.random() * 255);
+        /* temporario */
+
+
     }
 })
 
-const numButtonToHide = () => (Math.floor(Math.random() * 3))
+const randomIn3 = () => (Math.floor(Math.random() * 3))
 
 function hideRGBNum(buttonNum) {
     if (buttonNum === 0)
@@ -48,7 +55,7 @@ function CorrectNum(buttonNum) {
     else if (buttonNum === 1)
         return colors.green
     else
-    return colors.blue
+        return colors.blue
 }
 
 
