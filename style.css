@@ -20,6 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
     line-height: 1;
+    overflow: hidden; /* Escondendo a barra */
 }
 
 ol, ul {
@@ -74,25 +75,25 @@ body {
     font-size: 2.5em;
 }
 
-.flex-item-1{
+.flex-item-1 {
     flex: 1;
 }
 
-#how-to-play{
+#how-to-play {
     margin-left: 2.5vh;
     margin-top: 20px;
     text-align: left;
     height: inherit;
 }
 
-.text-header{
+.text-header {
     font-size: 1.5em;
     display: flex;
     justify-content: center;
     margin: 0.5em 0;
 }
 
-.text-header:first-child{
+.text-header:first-child {
     margin-top: 0;
 }
 
@@ -100,15 +101,19 @@ body {
     font-size: 0.95em;
 }
 
-#the-center{
+.text-content li {
+    margin: 0.2em 0;
+}
+
+#the-center {
     text-align: center;
     min-width: 22.5em;
     align-self: flex-start;
     padding: 0 5vh;
 }
 
-#play{
-    margin-right:2.5vh;
+#play {
+    margin-right: 2.5vh;
     margin-top: 20px;
     text-align: center;
     height: inherit;
@@ -124,10 +129,10 @@ button {
     font-size: 1em;
     transition: border-color 0.25s, color 0.25s;
     border-radius: 5em;
-    
+
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     border-color: grey;
     box-shadow: 0 0.8em 0.8em -0.4em black;

@@ -18,10 +18,11 @@ button.addEventListener('click', () => {
     button.addEventListener('mouseover', () => {
         defineBtnEffect(newColor);
     })
-
+    
+    let tries = 0;
     let answer = CorrectNum(buttonToHide);
     startLogicGame(answer);
-
+    
     for (let i = 0; i < 3; i++) {
         answerButtons[i].addEventListener('mouseover', () => {
             answerButtons[i].style.borderColor = newColor;
@@ -29,22 +30,27 @@ button.addEventListener('click', () => {
         })
         answerButtons[i].addEventListener('click', function () {
             //console.log(this.textContent);
-            console.log("resposta: ",answer);
+            console.log("resposta: ", answer);
             if (this.textContent == answer) {
                 RGB_h1.innerText = 'Jogar novamente?';
                 button.innerText = 'Claro!'
                 message.innerText = 'Parabéns, você acertou!'
                 for (let i = 0; i < 3; i++) {
+                    answerButtons[i].style.visibility = 'visible';
                     answerButtons[i].disabled = true;
-                    console.log(this.textContent);
                     answerButtons[i].innerHTML = '<i class="fas fa-check"></i>';
-                    console.log(this.textContent);
                 }
-                //button.disabled = false; //Impedir que o botão Começar seja clicado de novo
+                button.disabled = false; //Impedir que o botão Começar seja clicado de novo
             }
             else {
-                message.innerText = 'Quase! Tente de novo'
-                this.innerHTML = '<i class="fas fa-times"></i>';
+                tries += 1;
+                if (tries >= 2) {
+                    message.innerText = 'Agora ficou fácil, né!?'
+                } else {
+                    message.innerText = 'Quase! Tente de novo'
+                }
+                //this.innerHTML = '<i class="fas fa-times"></i>';
+                this.style.visibility = 'hidden';
             }
         })
     }
@@ -60,7 +66,7 @@ function startVisualGame(newColor, buttonToHide) {
     RGB_h1.innerText = hideRGBNum(buttonToHide);
     button.innerText = 'Boa sorte!'
     message.innerText = 'Qual número está mais próximo??'
-    //button.disabled = true; //Impedir que o botão Começar seja clicado de novo
+    button.disabled = true; //Impedir que o botão Começar seja clicado de novo
 }
 
 function startLogicGame(answer) {
