@@ -20,7 +20,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
     line-height: 1;
-    overflow: hidden; /* Escondendo a barra */
+    overflow: hidden;
+    /* Escondendo a barra */
 }
 
 ol, ul {
@@ -46,7 +47,6 @@ body {
     height: 100%;
 }
 
-
 #color {
     display: flex;
     justify-content: center;
@@ -57,7 +57,7 @@ body {
 }
 
 #interact {
-    border-top: 3.5px solid black;
+    border-top: 3.5px solid #121212;
 }
 
 #interact {
@@ -164,4 +164,11 @@ button:hover {
     border-color: grey;
     box-shadow: 0 0.8em 0.8em -0.4em black;
     transform: translateY(-0.15em);
+}
+
+
+@media (max-width: 1500px) {
+    body {
+        overflow: visible;
+    }
 }

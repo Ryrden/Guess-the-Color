@@ -5,10 +5,12 @@ const Nums = document.querySelectorAll('.square span');
 const color = document.querySelector('#color');
 const message = document.querySelector('#message')
 
-
 let colors = { red: 0, green: 0, blue: 0 };
-let minNumMargin = 25;
-let maxNumMargin = 35;
+let minNumMedium = 25;
+let maxNumMedium = 35;
+let minNumHard = 5;
+let maxNumHard = 20;
+
 
 button.addEventListener('click', () => {
     newColor = randomColor();
@@ -18,11 +20,11 @@ button.addEventListener('click', () => {
     button.addEventListener('mouseover', () => {
         defineBtnEffect(newColor);
     })
-    
+
     let tries = 0;
     let answer = CorrectNum(buttonToHide);
     startLogicGame(answer);
-    
+
     for (let i = 0; i < 3; i++) {
         answerButtons[i].addEventListener('mouseover', () => {
             answerButtons[i].style.borderColor = newColor;
@@ -49,7 +51,6 @@ button.addEventListener('click', () => {
                 } else {
                     message.innerText = 'Quase! Tente de novo'
                 }
-                //this.innerHTML = '<i class="fas fa-times"></i>';
                 this.style.visibility = 'hidden';
             }
         })
