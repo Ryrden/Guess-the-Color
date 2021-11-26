@@ -5,12 +5,12 @@ const Nums = document.querySelectorAll('.square span');
 const color = document.querySelector('#color');
 const message = document.querySelector('#message')
 
-let colors = { red: 0, green: 0, blue: 0 };
-let minNumMedium = 25;
-let maxNumMedium = 35;
-let minNumHard = 5;
-let maxNumHard = 20;
+const dark_mode = document.querySelector(".checkbox")
+dark_mode.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+})
 
+let colors = { red: 0, green: 0, blue: 0 };
 
 button.addEventListener('click', () => {
     newColor = randomColor();
@@ -31,8 +31,6 @@ button.addEventListener('click', () => {
             answerButtons[i].style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
         })
         answerButtons[i].addEventListener('click', function () {
-            //console.log(this.textContent);
-            console.log("resposta: ", answer);
             if (this.textContent == answer) {
                 RGB_h1.innerText = 'Jogar novamente?';
                 button.innerText = 'Claro!'
@@ -42,7 +40,7 @@ button.addEventListener('click', () => {
                     answerButtons[i].disabled = true;
                     answerButtons[i].innerHTML = '<i class="fas fa-check"></i>';
                 }
-                button.disabled = false; //Impedir que o botão Começar seja clicado de novo
+                button.disabled = false;
             }
             else {
                 tries += 1;
@@ -67,7 +65,7 @@ function startVisualGame(newColor, buttonToHide) {
     RGB_h1.innerText = hideRGBNum(buttonToHide);
     button.innerText = 'Boa sorte!'
     message.innerText = 'Qual número está mais próximo??'
-    button.disabled = true; //Impedir que o botão Começar seja clicado de novo
+    button.disabled = true;
 }
 
 function startLogicGame(answer) {
@@ -102,15 +100,12 @@ function CorrectNum(buttonNum) {
         return colors.blue
 }
 
-
 const randomColor = () => {
     colors.red = Math.floor(Math.random() * 255);
     colors.green = Math.floor(Math.random() * 255);
     colors.blue = Math.floor(Math.random() * 255);
     return `rgb(${colors.red}, ${colors.green}, ${colors.blue})`;
 }
-
-/* EFEITOS DE COR DOS BOTÕES */
 
 for (let btn of [button, answerButtons[0], answerButtons[1], answerButtons[2]]) {
     btn.addEventListener('mouseover', () => {

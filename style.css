@@ -99,6 +99,7 @@ body {
 
 .text-content {
     font-size: 0.95em;
+    position: relative;
 }
 
 .text-content li {
@@ -171,4 +172,56 @@ button:hover {
     body {
         overflow: visible;
     }
+}
+
+
+.label {
+    background-color: #292c35;
+    border-radius: 50px;
+    border: 2.5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 1.5px;
+    height: 26px;
+    width: 50px;
+    margin-left: 10px;
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.fa-moon {
+    color: #f1c40f;
+}
+
+.fa-sun {
+    color: #f39c12;
+}
+
+.ball {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+    transform: translateX(26px)
+}
+
+body.dark {
+    background-color: #292c35;
+    color: white;
+}
+
+#dark-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
