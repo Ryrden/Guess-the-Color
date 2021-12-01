@@ -2,8 +2,14 @@ const button = document.querySelector('#principal-button');
 const RGB_h1 = document.querySelector('#RGB');
 const answerButtons = document.querySelectorAll('.square');
 const Nums = document.querySelectorAll('.square span');
-const color = document.querySelector('#color');
-const message = document.querySelector('#message')
+const background = document.querySelector('#color');
+const message = document.querySelector('#message');
+
+//Game variables
+let answer;
+let tries = 0;
+let playColor;
+let hiddenColorIndex = -1;
 
 const dark_mode = document.querySelector(".checkbox")
 dark_mode.addEventListener('change', () => {
@@ -12,102 +18,133 @@ dark_mode.addEventListener('change', () => {
 
 let colors = { red: 0, green: 0, blue: 0 };
 
+const gamePromise = new Promise(r => r());
+
 button.addEventListener('click', () => {
-    newColor = randomColor();
-    const buttonToHide = randomIn3();
-    startVisualGame(newColor, buttonToHide);
-    defineBtnEffect(newColor);
-    button.addEventListener('mouseover', () => {
-        defineBtnEffect(newColor);
-    })
+    gamePromise.then(() => startGame());
+})
 
-    let tries = 0;
-    let answer = CorrectNum(buttonToHide);
-    startLogicGame(answer);
+function startGame() {
+    console.log("Game is on",);
+    setInitialValue();
+    startGameVisual();
+    setButtonsValues();
+    setButtonsEvents();
+    console.log("DEBUG: ");
+    console.log("playColor", playColor);
+    console.log("tries",tries);
+}
 
-    for (let i = 0; i < 3; i++) {
-        answerButtons[i].addEventListener('mouseover', () => {
-            answerButtons[i].style.borderColor = newColor;
-            answerButtons[i].style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
+function setButtonsEvents() {
+    answerButtons.forEach(b => {
+
+        b.addEventListener('mouseover', () => {
+            b.style.borderColor = this.playColor;
+            b.style.boxShadow = `0 0.8em 0.8em -0.4em ${this.playColor}`;
         })
-        answerButtons[i].addEventListener('click', function () {
-            if (this.textContent == answer) {
-                RGB_h1.innerText = 'Jogar novamente?';
-                button.innerText = 'Claro!'
-                message.innerText = 'Parabéns, você acertou!'
-                for (let i = 0; i < 3; i++) {
-                    answerButtons[i].style.visibility = 'visible';
-                    answerButtons[i].disabled = true;
-                    answerButtons[i].innerHTML = '<i class="fas fa-check"></i>';
-                }
-                button.disabled = false;
+
+        b.onclick = () => {
+            if (b.textContent == this.answer) {
+                gamePromise.then(() => endGame());
             }
             else {
-                tries += 1;
-                if (tries >= 2) {
+                this.tries++;
+                if (this.tries == 2) {
                     message.innerText = 'Agora ficou fácil, né!?'
                 } else {
                     message.innerText = 'Quase! Tente de novo'
                 }
-                this.style.visibility = 'hidden';
+                b.style.visibility = 'hidden';
             }
-        })
-    }
-})
-
-function defineBtnEffect(newColor) {
-    button.style.borderColor = newColor;
-    button.style.boxShadow = `0 0.8em 0.8em -0.4em ${newColor}`;
+            console.log("After play",this.tries);
+        }
+    })
 }
 
-function startVisualGame(newColor, buttonToHide) {
-    color.style.backgroundColor = newColor;
-    RGB_h1.innerText = hideRGBNum(buttonToHide);
+function setInitialValue() {
+    this.tries = 0;
+    this.playColor = getRandomColor();
+    this.hiddenColorIndex = random3();
+    this.answer = getCorrectNum();
+    console.log("Index", this.hiddenColorIndex);
+}
+
+function endGame() {
+    RGB_h1.innerText = 'Jogar novamente?';
+    button.innerText = 'Claro!'
+    message.innerText = 'Parabéns, você acertou!'
+    answerButtons.forEach(b => {
+        b.style.visibility = 'visible';
+        b.borderColor = 'black';
+        b.boxShadow = `none`;
+        b.disabled = true;
+        b.innerHTML = '<i class="fas fa-check"></i>';
+        b.onclick = null;
+    })
+    button.disabled = false;
+    console.log("Game is over!");
+}
+
+
+function startGameVisual() {
+    background.style.backgroundColor = playColor;
+    RGB_h1.innerText = getRGBText();
+    message.innerText = 'Qual número está mais próximo??';
+
     button.innerText = 'Boa sorte!'
-    message.innerText = 'Qual número está mais próximo??'
     button.disabled = true;
+    button.style.borderColor = playColor;
+    button.style.boxShadow = `0 0.8em 0.8em -0.4em ${playColor}`;
+
+    answerButtons.forEach(b => {
+        b.style.borderColor = 'black';
+        b.style.boxShadow = `none`;
+        b.style.visibility = 'visible';
+    });
 }
 
-function startLogicGame(answer) {
-    const buttonToAnswer = randomIn3();
-    for (let i = 0; i < 3; i++) {
-        answerButtons[i].disabled = false;
-        if (i === buttonToAnswer)
-            answerButtons[i].textContent = answer;
+function setButtonsValues() {
+    console.log("Hidden after", this.hiddenColorIndex);
+    answerButtons.forEach((b, i) => {
+        b.disabled = false;
+        if (i === this.hiddenColorIndex)
+            b.textContent = this.answer;
         else
-            /* temporario */
-            answerButtons[i].textContent = Math.floor(Math.random() * 255);
-    }
+            b.textContent = Math.floor(Math.random() * 255);
+    })
 }
 
-const randomIn3 = () => (Math.floor(Math.random() * 3))
+function random3() {
+    console.log("Random called!")
+    return Math.round(Math.random() * 2);
+}
 
-function hideRGBNum(buttonNum) {
-    if (buttonNum === 0)
+function getRGBText() {
+    if (hiddenColorIndex === 0)
         return `RGB(???, ${colors.green}, ${colors.blue})`
-    else if (buttonNum === 1)
+    else if (hiddenColorIndex === 1)
         return `RGB(${colors.red}, ???, ${colors.blue})`
     else
         return `RGB(${colors.red}, ${colors.green}, ???)`
 }
 
-function CorrectNum(buttonNum) {
-    if (buttonNum === 0)
+function getCorrectNum() {
+    if (hiddenColorIndex === 0)
         return colors.red;
-    else if (buttonNum === 1)
+    else if (hiddenColorIndex === 1)
         return colors.green
     else
         return colors.blue
 }
 
-const randomColor = () => {
+function getRandomColor() {
     colors.red = Math.floor(Math.random() * 255);
     colors.green = Math.floor(Math.random() * 255);
     colors.blue = Math.floor(Math.random() * 255);
-    return `rgb(${colors.red}, ${colors.green}, ${colors.blue})`;
+    playColor = `rgb(${colors.red}, ${colors.green}, ${colors.blue})`;
 }
 
-for (let btn of [button, answerButtons[0], answerButtons[1], answerButtons[2]]) {
+for (let btn of [button, ...answerButtons]) {
     btn.addEventListener('mouseover', () => {
         btn.style.borderColor = 'gray';
         btn.style.boxShadow = `0 0.8em 0.8em -0.4em black`;
