@@ -6,77 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&family=Roboto:wght@500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Arimo&family=Baloo+Bhaijaan+2:wght@400;600;700&family=Libre+Franklin:wght@300&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4bcbe6449b.js" crossorigin="anonymous"></script>
-    <title>Random Colors</title>
+    <title>Guess the color</title>
 </head>
 
 <body>
-    <section>
-        <div id="color"></div>
-        <div id="interact">
-            <div id="how-to-play" class="flex-item-1">
-                <div class="text-content">
-                    <div class="text-header">
-                        COMO O JOGO FUNCIONA?
-                    </div>
-                    O jogo consiste em "adivinhar" qual é o número que está faltando para completar
-                    a numeração de RGB enunciada.
-
-                    <div class="text-header">
-                        REGRAS & INFORMAÇÕES:
-                    </div>
-                    <p class="text-content">
-                    <ul>
-                        <li>Proibido consultar tabelas de RGB online</li>
-                        <li>Apenas 1 número das 3 possíveis respostas está correto</li>
-                    </ul>
-                    </p>
-                    <div class="text-header">
-                        COMO JOGAR:
-                    </div>
-                    <ul>
-                        <li>Clique botão central escrito Começar, ao clicar, o jogo se inicia</li>
-                        <li>O objetivo do jogo é acertar o número que corresponde a cor exibida</li>
-                        <li>O jogo acaba quando o número escolhido for o certo</li>
-                    </ul>
-                </div>
-            </div>
-            <div id="the-center" class="flex-item-1">
-                <h1 id="RGB">Sem Cor</h1>
-                <div id="btnChange">
-                    <button id="principal-button">Começar</button>
-                </div>
-                <div id="guess-num">
-                    <p id="message"></p>
-                    <div id="Numbers">
-                        <button class="square">?</button>
-                        <button class="square">??</button>
-                        <button class="square">???</button>
-                    </div>
-                </div>
-            </div>
-            <div id="play" class="flex-item-1">
-                <div class="text-header">
-                    O QUE É RGB?
-                </div>
-                <p class="text-content">
-                    RGB é a abreviatura de um sistema de cores aditivas em que o Vermelho (Red), o Verde (Green) e o
-                    Azul
-                    (Blue) são combinados de várias formas de modo a reproduzir um largo espectro cromático. O propósito
-                    principal do sistema RGB é a reprodução de cores em dispositivos eletrônicos como monitores de TV e
-                    computador, retroprojetores, scanners e câmeras digitais, assim como na fotografia tradicional.
+    <header id="color"></header>
+    <main>
+        <section id="how-to-play" class="flex-item-1">
+            <article class="collapse">
+                <span class="text-header collapse-question">COMO O JOGO FUNCIONA?
+                    <img src="./collapse-icon.svg">
+                </span>
+                <p class="text-content collapse-answer">
+                    O jogo consiste em "adivinhar" qual é o número que está faltando para completar a numeração de RGB
+                    enunciada.
                 </p>
-                <div class="text-header">
-                    OPÇÕES
+            </article>
+            <article class="collapse">
+                <span class="text-header">REGRAS & INFORMAÇÕES</span>
+                <p class="text-content">
+                <ul>
+                    <li>Proibido consultar tabelas de RGB online</li>
+                    <li>Apenas 1 número das 3 possíveis respostas está correto</li>
+                </ul>
+                </p>
+            </article>
+            <article>
+                <span class="text-header">COMO JOGAR</span>
+                <p class="text-content">
+                <ul>
+                    <li>Clique botão central escrito Começar, ao clicar, o jogo se inicia</li>
+                    <li>O objetivo do jogo é acertar o número que corresponde a cor exibida</li>
+                    <li>O jogo acaba quando o número escolhido for o certo</li>
+                </ul>
+                </p>
+            </article>
+        </section>
+        <section id="the-center" class="flex-item-1">
+            <h1 id="RGB">Sem Cor</h1>
+            <button id="principal-button">Começar</button>
+            <article>
+                <p id="message"></p>
+                <div id="Numbers">
+                    <button class="square">?</button>
+                    <button class="square">??</button>
+                    <button class="square">???</button>
                 </div>
+            </article>
+        </section>
+        <section id="play" class="flex-item-1">
+            <article class="collapse">
+                <span class="text-header collapse-question"> O QUE É RGB?
+                    <img src="./collapse-icon.svg">
+                </span>
+                <p class="text-content collapse-answer">
+                    RGB é a abreviatura de um sistema de cores aditivas em que o Vermelho (Red), o Verde (Green) e o
+                    Azul (Blue) são combinados de várias formas de modo a reproduzir um largo espectro cromático. O
+                    propósito principal do sistema RGB é a reprodução de cores em dispositivos eletrônicos como
+                    monitores de TV e computador, retroprojetores, scanners e câmeras digitais, assim como na fotografia
+                    tradicional.
+                </p>
+            </article>
+            <article>
+                <span class="text-header">OPÇÕES:</span>
                 <div id="dark-mode">
-                    <p class="text-content">
-                        Modo Escuro:
-                    </p>
+                    <p class="text-content">Modo Escuro:</p>
                     <input type="checkbox" class="checkbox" id="checkbox">
                     <label for="checkbox" class="label">
                         <i class="fas fa-moon"></i>
@@ -84,12 +85,11 @@
                         <div class="ball"></div>
                     </label>
                 </div>
-                    
-            </div>
-        </div>
+            </article>
+        </section>
+    </main>
 
-        <script src="app.js"></script>
-    </section>
+    <script src="app.js"></script>
 </body>
 
 </html>

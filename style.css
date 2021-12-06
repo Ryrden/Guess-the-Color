@@ -28,23 +28,30 @@ ol, ul {
     padding: 0 2em;
 }
 
-blockquote, q {
-    quotes: none;
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-}
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
 body {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Baloo Bhaijaan 2', cursive;
+    font-size: 1.05rem;
     height: 100%;
+}
+
+body.dark {
+    background-color: #292c35;
+    color: white;
+}
+
+.collapse-dark-mode img {
+    filter: invert(1);
+}
+
+#dark-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #color {
@@ -56,11 +63,11 @@ body {
     transition: background-color cubic-bezier(0.83, 0, 0.17, 1) 0.6s;
 }
 
-#interact {
+main {
     border-top: 3.5px solid #121212;
 }
 
-#interact {
+main {
     width: 100%;
     height: 50vh;
     display: flex;
@@ -70,13 +77,22 @@ body {
     align-items: center;
 }
 
-#interact h1 {
+main h1 {
     margin-top: 20px;
     font-size: 2.5em;
 }
 
 .flex-item-1 {
     flex: 1;
+}
+
+#RGB {
+    font-family: 'Baloo Bhaijaan 2', cursive;
+}
+
+#RGB span {
+    font-family: 'Arimo', sans-serif;
+    font-size: 2.35rem;
 }
 
 #how-to-play {
@@ -87,23 +103,21 @@ body {
 }
 
 .text-header {
-    font-size: 1.5em;
+    font-family: 'Baloo Bhaijaan 2', cursive;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
-    margin: 0.5em 0;
-}
-
-.text-header:first-child {
-    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .text-content {
     font-size: 0.95em;
     position: relative;
+    margin-bottom: 0.5rem;
 }
 
-.text-content li {
-    margin: 0.2em 0;
+.text-content ul {
+    margin: 1em 0;
 }
 
 #the-center {
@@ -123,7 +137,8 @@ body {
 button {
     margin: 20px 0;
     background-color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Baloo Bhaijaan 2', cursive;
+    font-weight: 600;
     color: black;
     border: 3.5px solid black;
     padding: 1em 2em;
@@ -149,7 +164,6 @@ button:hover {
 .square {
     border: 3.5px solid black;
     background-color: none;
-    font-family: 'Roboto', sans-serif;
     width: 5em;
     height: 5em;
     display: flex;
@@ -211,17 +225,47 @@ button:hover {
     transition: transform 0.2s linear;
 }
 
-.checkbox:checked + .label .ball {
+.checkbox:checked+.label .ball {
     transform: translateX(26px)
 }
 
-body.dark {
-    background-color: #292c35;
-    color: white;
-}
-
-#dark-mode {
+.collapse-question {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.collapse-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-out;
+}
+
+.collapse-answer {
+    margin-bottom: 1rem;
+}
+
+
+.collapse-clicked .collapse-answer {
+    max-height: 300px;
+    animation: fade 1s ease-in-out;
+}
+
+.collapse-clicked img {
+    transform: rotate(180deg);
+}
+.collapse-question img {
+    transition: transform .5s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
