@@ -8,7 +8,8 @@ body {
     /* Escondendo a barra */
 }
 
-body { /* Definindo a fonte para todos os itens não especificados */
+body {
+    /* Definindo a fonte para todos os itens não especificados */
     font-family: 'Baloo Bhaijaan 2', cursive;
 }
 
@@ -21,7 +22,8 @@ body.dark {
     color: white;
 }
 
-.collapse-dark-mode img { /* Caso o usuário esteja no modo escuro */
+.collapse-dark-mode img {
+    /* Caso o usuário esteja no modo escuro */
     filter: invert(1);
 }
 
@@ -53,6 +55,7 @@ main h1 {
 }
 
 .text-header {
+    text-align: center;
     font-family: 'Baloo Bhaijaan 2', cursive;
     font-size: 2rem;
     display: flex;
@@ -77,7 +80,7 @@ main h1 {
     font-size: 2.35rem;
 }
 
-#how-to-play ,#play, main h1 {
+#how-to-play, #information, main h1 {
     margin-top: 20px;
 }
 
@@ -90,7 +93,7 @@ main h1 {
     margin-left: 0.5em;
 }
 
-#play p {
+#information p {
     margin-right: 0.75em;
 }
 
@@ -142,6 +145,7 @@ button:hover {
 }
 
 .label {
+    cursor: pointer;
     background-color: #292c35;
     border-radius: 50px;
     border: 2.5px solid black;
@@ -169,7 +173,6 @@ button:hover {
 }
 
 .ball {
-    cursor: pointer;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -198,7 +201,6 @@ button:hover {
     margin-bottom: 1rem;
 }
 
-
 .collapse-clicked .collapse-answer {
     max-height: 300px;
     animation: fade 1s ease-in-out;
@@ -207,6 +209,7 @@ button:hover {
 .collapse-clicked img {
     transform: rotate(180deg);
 }
+
 .collapse-question img {
     transition: transform .5s ease-in;
 }
@@ -223,8 +226,41 @@ button:hover {
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
     body {
         overflow: visible;
+    }
+}
+
+@media (max-width: 1200px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        height: inherit;
+    }
+    
+    #the-center {
+        order: 1;
+    }
+
+    #how-to-play {
+        order: 2;
+    }
+
+    #information {
+        order: 3;
+    }
+    ul {
+        text-align: center;
+        list-style-type: none;
+    }
+    
+    #Numbers {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .square {
+        margin: 0 1.2em;
     }
 }
