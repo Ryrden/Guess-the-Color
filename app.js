@@ -1,9 +1,9 @@
-const button = document.querySelector('#principal-button');
-const RGB_h1 = document.querySelector('#RGB');
-const answerButtons = document.querySelectorAll('.square');
+const button = document.getElementById('principal-button');
+const RGB_h1 = document.getElementById('RGB');
 const Nums = document.querySelectorAll('.square span');
-const background = document.querySelector('#color');
-const message = document.querySelector('#message');
+const answerButtons = document.querySelectorAll('.square');
+const background = document.getElementById('color');
+const message = document.getElementById('message');
 const collapse = document.querySelectorAll(".collapse");
 
 //Game variables
@@ -64,7 +64,6 @@ function endGame() {
         btn.style.visibility = 'visible';
         btn.borderColor = 'black';
         btn.boxShadow = `none`;
-        btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-check"></i>';
         btn.onclick = null;
     })
